@@ -1,0 +1,10 @@
+th{
+    @apply bg-neutral-100;
+}
+/* thead tr th {
+    @apply bg-neutral-300
+} */
+
+tfoot td{
+    @apply bg-neutral-100;
+}
