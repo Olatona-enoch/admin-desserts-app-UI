@@ -1,0 +1,3 @@
+::ng-deep .mat-mdc-dialog-container {
+    @apply overflow-hidden rounded-md !important;
+}

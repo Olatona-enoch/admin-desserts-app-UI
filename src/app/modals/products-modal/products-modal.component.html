@@ -1,0 +1,119 @@
+<!-- <p>products-modal works!</p> -->
+<!-- ------------------------------------------------------------ -->
+<!-- EDIT PRODUCT FORM -->
+<div *ngIf="data.operation === 'edit'" class="container h-full sm:py-6 text-black">
+    <div class="mb-5">
+        <button class="btn btn-sm btn-circle bg-neutral absolute right-4 top-4 text-white flex items-center justify-center" mat-dialog-close>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <div mat-dialog-content >
+        <div class="flex flex-col items-center justify-center w-full ">
+
+            <header class="font-bold text-4xl mb-3">Edit Product #{{data.product.id}}</header>
+            <form [formGroup]="editForm" class="w-full flex flex-col items-center justify-center gap-5 ">
+                <!-- <label for="">Upload new Image </label>
+                <input type="file"
+                 formControlName="fileInput" 
+                 class="file-input bg-neutral-200 file-input-bordered w-full max-w-xs" /> -->
+
+                <label for="">Edit Product Name/Variation</label>
+                <input type="text"
+                formControlName="productName" 
+                placeholder="name/ Variation" class="input input-bordered w-full max-w-msm bg-neutral-100" />
+
+                <label for="">Edit Product category</label>
+                <input type="text"
+                formControlName="productCategory"
+                placeholder="category" class="input input-bordered w-full max-w-msm bg-neutral-100" />
+
+                <label for="">Edit Product Price</label>
+                <input type="number"
+                formControlName="productPrice"
+                placeholder="price" class="input input-bordered w-full max-w-msm bg-neutral-100" />
+
+                <label for="">Edit Product Stock</label>
+                <input type="text"
+                formControlName="productStock" 
+                placeholder="Stock" class="input input-bordered w-full max-w-msm bg-neutral-100" />
+            </form>
+        </div>
+    </div>
+    <div class=" mt-5 sm:mb-5 mb-10 flex items-center justify-center px-4">
+        <button class="btn btn-neutral btn-block max-w-xs justify-self-center" (click)="onSave(data.product.id)"> Save</button>
+    </div>
+</div>
+
+
+
+<!-- ------------------------------------------------------------ -->
+<!-- DELETE PRODUCT MODAL -->
+<div *ngIf="data.operation === 'delete'" class="container h-full sm:py-6 text-black">
+    <div class="mb-5">
+        <button class="btn btn-sm btn-circle bg-neutral absolute right-4 top-4 text-white flex items-center justify-center" mat-dialog-close>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <div mat-dialog-content >
+        <header  class="font-bold text-4xl mb-3 text-center">Delete Product #{{data.product.id}}</header>
+        <div class="flex flex-col items-center justify-center gap-1">
+            <p class="text-xl mb-5 text-center">Are you sure u want to delete this product</p>
+            <p class="text-lg mb-5 text-center text-red-400"> {{data.product.variation}}</p>
+            <div class="flex justify-around w-full">
+                <button class="btn btn-active px-9">Cancel</button>
+                <button (click)="onDelete(data.product.id)" class="btn btn-error px-9">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ------------------------------------------------------------ -->
+<!-- ADD PRODUCT FORM -->
+<div *ngIf="data.operation === 'add'" class="container h-full sm:py-6 text-black">
+    <div class="mb-5">
+        <button class="btn btn-sm btn-circle bg-neutral absolute right-4 top-4 text-white flex items-center justify-center" mat-dialog-close>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <div mat-dialog-content >
+        <div class="flex flex-col items-center justify-center w-full ">
+
+            <header class="font-bold text-4xl mb-3">New Product</header>
+            <form [formGroup]="editForm" class="w-full flex flex-col items-center justify-center gap-5 ">
+                <!-- <label for="">Upload new Image </label>
+                <input type="file"
+                 formControlName="fileInput" 
+                 class="file-input bg-neutral-200 file-input-bordered w-full max-w-xs" /> -->
+
+                <label for="">Name/Variation of the Product</label>
+                <input type="text"
+                formControlName="productName" 
+                placeholder="name/ Variation" class="input input-bordered w-full max-w-msm bg-neutral-100" />
+
+                <label for="">Name of Category</label>
+                <input type="text"
+                formControlName="productCategory"
+                placeholder="category" class="input input-bordered w-full max-w-msm bg-neutral-100" />
+
+                <label for="">Product Price</label>
+                <input type="number"
+                formControlName="productPrice"
+                placeholder="price" class="input input-bordered w-full max-w-msm bg-neutral-100" />
+
+                <label for="">Product initial Stock</label>
+                <input type="text"
+                formControlName="productStock" 
+                placeholder="Stock" class="input input-bordered w-full max-w-msm bg-neutral-100" />
+            </form>
+        </div>
+    </div>
+    <div class=" mt-5 sm:mb-5 mb-10 flex items-center justify-center px-4">
+        <button class="btn btn-neutral btn-block max-w-xs justify-self-center" (click)="onAdd()"> Save</button>
+    </div>
+</div>

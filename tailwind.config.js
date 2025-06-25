@@ -21,6 +21,9 @@ module.exports = {
         'dancing-script': ['"Dancing Script"'],
         'poppins': ['"Poppins"'],
       },
+      screens: {
+        'msm': '586px',
+      },
     },
   },
   plugins: [

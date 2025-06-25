@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { sum } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductsModalComponent } from 'src/app/modals/products-modal/products-modal.component';
 import { Product, ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -12,9 +13,11 @@ export class ProductsPageComponent implements OnInit {
   totalSum: number = 0;
   maxPrice: number = 0;
   group: number[] = [1,2,3,4,5,6,7,8,8,10];
+  // operation!: 'delete' | 'edit' | 'add';
 
   constructor(
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private dialog: MatDialog,
   ){}
 
   ngOnInit(): void {
@@ -27,6 +30,16 @@ export class ProductsPageComponent implements OnInit {
   get(){
     this.totalSum = this.products.reduce((sum:number , product: Product) => (sum + product.price) , 0);
     this.maxPrice = this.products.reduce((max:number , product: Product) => max > product.price ?  max : product.price , 0)
+  }
+
+  openDialog(operation : 'delete' | 'edit' | 'add' ,product?: Product) {
+    this.dialog.open(ProductsModalComponent, {
+      maxWidth: '95vw',
+      data: {
+        operation: operation,
+        product: product
+      }
+    });
   }
 
 }

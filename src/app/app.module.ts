@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MaterialModule } from './material/material.module';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
@@ -21,6 +22,11 @@ import { UnavailableComponent } from './pages/unavailable/unavailable.component'
 import { ProfileComponent } from './pages/profile/profile.component';
 import { environment } from 'src/environments/environment';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductsModalComponent } from './modals/products-modal/products-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { OrdersModalComponent } from './modals/orders-modal/orders-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,14 +43,21 @@ import { ProductListComponent } from './components/product-list/product-list.com
     UnavailableComponent,
     ProfileComponent,
     ProductListComponent,
-    ProductsPageComponent
+    ProductsPageComponent,
+    ProductsModalComponent,
+    OrdersModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

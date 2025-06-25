@@ -2,7 +2,7 @@
 <div class="text-black mx-5 mt-8">
     <div class="flex items-center justify-between">
         <h1 class="text-4xl font-medium">Products</h1>
-        <button class="btn btn-neutral"> Add Product</button>
+        <button (click)="openDialog('add')" class="btn btn-neutral"> Add Product</button>
     </div>
 
     <div class="mt-7 flex gap-10">
@@ -160,39 +160,42 @@
     </div> -->
 
 <div class="mt-14 overflow-x-auto h-[420px] w-[100%] bg-neutral-100 px-4 mb-10 rounded-md">
-  <table class="table table-pin-rows table-pin-cols bg-neutral-100 ">
+  <table class="table table-pin-rows  bg-neutral-100 ">
     <thead class="text-sm border-b-2 text-neutral-800">
         <tr class="pb-10 " >
             <th class="py-4">
-            <label>
-                <input [indeterminate]="true" disabled type="checkbox" class="checkbox checkbox-sm" />
-            </label>
+                <label>
+                    <input [indeterminate]="true" disabled type="checkbox" class="checkbox checkbox-sm" />
+                </label>
             </th>
-            <th class="py-5">Product</th>
+            <th class="py-5 ps-0">Product</th>
             <th class="py-5">Category</th>
             <th class="py-5">Price</th>
             <th class="py-5">Stock</th>
+            <th class="py-5">Del.</th>
+            <th class="py-5">Edit</th>
         </tr>
     </thead>
     <tbody class="pt-10">
-        <ng-container *ngFor="let product of products">
+        <ng-container *ngFor="let product of products let i = index ">
             <tr>
-                <th>
-                <label>
-                    <input type="checkbox" class="checkbox checkbox-sm" />
-                </label>
-                </th>
-                <td>
-                <div class="flex items-center gap-3">
-                    <div class="avatar">
-                    <div class="mask mask-squircle h-8 w-8">
-                        <img src= {{product.image}} alt="">
+                <td class="font-bold">
+                    {{i+1}}
+                    <!-- <label>
+                        <input type="checkbox" class="checkbox checkbox-sm" />
+                    </label> -->
+                </td>
+                <td class="ps-0">
+                    <div class="flex items-center gap-3">
+                        <div class="avatar">
+                        <div class="mask mask-squircle h-8 w-8">
+                            <img src= {{product.image}} alt="">
+                        </div>
+                        </div>
+                        <div>
+                            <div class="">{{product.variation}}</div>
+                        </div>
                     </div>
-                    </div>
-                    <div>
-                        <div class="">{{product.variation}}</div>
-                    </div>
-                </div>
                 </td>
                 <td>
                     {{product.name}}
@@ -201,12 +204,29 @@
                 <th>
                     200
                 </th>
+                <td>
+                    <button (click)="openDialog('delete', product)" class="hover:text-custom-red">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash size-5" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                        </svg>
+                    </button>
+                </td>
+                <td>
+                    <button (click)="openDialog('edit', product)" class="hover:text-rose-950">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pen size-5" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
+                        </svg>
+                    </button>
+                </td>
             </tr>
         </ng-container>
     </tbody>
     <tfoot>
       <tr>
         <th></th>
+        <td></td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

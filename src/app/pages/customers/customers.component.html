@@ -1,7 +1,94 @@
 <!-- <p>customers works!</p> -->
 <div class="text-black mx-5 mt-8">
-    <div class="flex items-center justify-between">
-        <h1 class="text-4xl font-medium">Customers</h1>
-        <!-- <button class="btn btn-neutral"> Add Product</button> -->
-    </div>
+    <h1 class="text-4xl font-medium">Customers</h1>
+
+  <div class="mt-7 msm:flex grid grid-cols-2 items-center gap-5 w-full">
+        <label class="input input-bordered border-gray-500 border-2 outline-gray-500 bg-neutral-200 flex items-center gap-2 w-full col-span-2">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                class="h-4 w-4 opacity-70">
+                <path
+                fill-rule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clip-rule="evenodd" />
+            </svg>
+            <input [(ngModel)]="searchTerm" (input)="applyFilter()" type="text" class="grow " placeholder="Search Customers" />
+           
+        </label>
+        <!-- <p>{{searchTerm}}</p> -->
+
+        <select (change)="applyFilter($event)" class="select text-base select-bordered border-gray-500 bg-neutral-300 w-fit max-w-[200px] shadow-sm ">
+            <option disabled selected class="">Filters</option>
+            <option value="a-z">Name A-Z</option>
+            <option value="z-a">Name Z-A</option>
+            <!-- <option>Active </option>
+            <option>Inactive</option>
+            <option>Last Purchase Date</option>
+            <option>Engagement</option> -->
+        </select>
+
+        <button class="btn btn-neutral px-5 justify-self-end">
+            Export
+        </button>
+  </div>
+
+  <div class="mt-14 overflow-x-auto h-[420px] w-[100%] bg-neutral-100 px-4 mb-10 rounded-md">
+  <table class="table table-pin-rows table-pin-cols bg-neutral-100 ">
+    <thead class="text-sm border-b-2 text-neutral-800">
+        <tr class="pb-10 " >
+            <th class="py-4">
+            <label>
+                <input [indeterminate]="true" disabled type="checkbox" class="checkbox checkbox-sm" />
+            </label>
+            </th>
+            <th class="py-5">Customers Name</th>
+            <th class="py-5"> Email Address</th>
+            <th class="py-5">Phone Number</th>
+            <th class="py-5">Status</th>
+        </tr>
+    </thead>
+    <tbody class="pt-10">
+        <ng-container *ngFor="let customer of filteredCustomers">
+            <tr>
+                <th>
+                <label>
+                    <input type="checkbox" class="checkbox checkbox-sm" />
+                </label>
+                </th>
+                <td>
+                <div class="flex items-center gap-3">
+                    <!-- <div class="avatar">
+                    <div class="mask mask-squircle h-8 w-8">
+                        <img src= {{customer.image}} alt="">
+                    </div>
+                    </div> -->
+                    <div>
+                        <div class="capitalize">{{customer.firstName}} {{customer.lastName}} </div>
+                    </div>
+                </div>
+                </td>
+                <td>
+                    {{customer.email}}
+                </td>
+                <td> {{customer.phone}} </td>
+                <th>
+                    Active
+                </th>
+            </tr>
+        </ng-container>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
 </div>
